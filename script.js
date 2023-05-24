@@ -8,14 +8,15 @@ let exampleAppointmentForDay = [
 ];
 
 let appointments = [
-  [
-    { time: "9:00", title: "Meeting with my department" },
-    { time: "12:30", title: "Lunch" },
-  ], // Day 1
-  [], // Day 2
-  [], // Day 3
-  [{ time: "12:00", title: "Lunch in the city center" }], // Day 4
-  [], //.... up to 30
+  // EXAMPLE
+  //  [
+  //    { time: "9:00", title: "Meeting with my department" },
+  //    { time: "12:30", title: "Lunch" },
+  //  ], // Day 1
+  //  [], // Day 2
+  //  [], // Day 3
+  //  [{ time: "12:00", title: "Lunch in the city center" }], // Day 4
+  //  [], //.... up to 30
 ];
 
 function visualizeAppointments() {
@@ -103,6 +104,11 @@ function onLoadAction() {
     dayNode.addEventListener("click", onDayClick);
     // 3) Append it / add it somewhere in the DOM
     document.getElementById("days-container").appendChild(dayNode);
+
+    // For every day we create, we also want to have a list where to store the appointments for that day
+    appointments.push([
+      // We add this EMPTY LIST so that we can store here appointments
+    ]);
   }
 }
 
