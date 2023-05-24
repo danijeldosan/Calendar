@@ -89,12 +89,14 @@ h1 {
     width: 200px;
   }
   
-  #appointment-creation input[type="button"] {
+  #appointment-creation button {
     margin-left: 10px;
     width: 92px;
     height: 54px;
     background-color: rgb(140, 60, 140);
     font-weight: bolder;
+    color: white;
+    border: none;
   }
   
   #appointments-list li {

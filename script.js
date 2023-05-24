@@ -61,7 +61,31 @@ function selectDay(event) {
 
 function onDayClick(event) {
   selectDay(event);
-  visualizeAppointments(event);
+  visualizeAppointments();
+}
+
+function saveAppointment() {
+  // 1) We get the two input values
+  let inputTime = document.getElementById("appointment-time").value;
+  let inputTitle = document.getElementById("appointment-title").value;
+
+  let appointmentObject = {
+    // We put the two values in a new object.
+    time: inputTime,
+    title: inputTitle,
+  };
+
+  // We are ready to store this appointment object in our list of appointments
+
+  let selectedDay = document.querySelector(".selected").innerText;
+  let selectedDayNumber = parseInt(selectedDay);
+  let index = selectedDayNumber - 1;
+  let appointmentsForSelectedDay = appointments[index];
+
+  appointmentsForSelectedDay.push(appointmentObject);
+
+  // After adding this new element, we need to visualize again the lis of appointments for the day
+  visualizeAppointments();
 }
 
 function onLoadAction() {
