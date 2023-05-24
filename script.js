@@ -1,4 +1,52 @@
-function onDayClick(eventData) {
+// GLOBAL VARIABLES - THE MEMORY OF CALENDAR
+
+let exampleAppointment = { time: "9:00", title: "Doctor appointment" };
+
+let exampleAppointmentForDay = [
+  { time: "9:00", title: "Doctor appointment" },
+  { time: "12:30", title: "Lunch" },
+];
+
+let appointments = [
+  [
+    { time: "9:00", title: "Meeting with my department" },
+    { time: "12:30", title: "Lunch" },
+  ], // Day 1
+  [], // Day 2
+  [], // Day 3
+  [{ time: "12:00", title: "Lunch in the city center" }], // Day 4
+  [], //.... up to 30
+];
+
+function visualizeAppointments() {
+  // First thing we do to visualize the appointments for the day:
+  // we just clear the appointments ul tag content, so that
+  // we have a clean area where to visualize the new appointments.
+  document.getElementById("appointments-list").innerHTML = "";
+
+  let selectedDay = document.querySelector(".selected").innerText;
+  let selectedDayNumber = parseInt(selectedDay);
+  let index = selectedDayNumber - 1; // Days start from 1, but arrays count from 0
+  let appointmentsForSelectedDay = appointments[index];
+
+  for (let appointment of appointmentsForSelectedDay) {
+    // 1) We create the appointment tag
+    let appointmentLi = document.createElement("li");
+
+    // 2) We customize it
+    // We format the data inside the object as we want to display it:
+    appointmentLi.innerText = `${appointment.time} -- ${appointment.title}`;
+    // ANOTHER WAY TO DO THE SAME THING:
+    // appointmentLi.innerText = appointment.time + " -- " + appointment.title;
+
+    // 3) We append it somewhere in the DOM
+    document.getElementById("appointments-list").appendChild(appointmentLi);
+  }
+  // This is just a nicer way to iterate through an array.
+  // We could have just used a normal for/while loop.
+}
+
+function selectDay(event) {
   // Remove the class selected from the previously selected day
   let previouslySelectedDay = document.querySelector(".selected"); // Get the first node matching the .selected selector
 
@@ -7,8 +55,13 @@ function onDayClick(eventData) {
   }
 
   // Clicked a day!
-  let clickedDayNode = eventData.target;
+  let clickedDayNode = event.target;
   clickedDayNode.classList.add("selected");
+}
+
+function onDayClick(event) {
+  selectDay(event);
+  visualizeAppointments(event);
 }
 
 function onLoadAction() {
