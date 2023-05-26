@@ -89,7 +89,7 @@ h1 {
     width: 200px;
   }
   
-  #appointment-creation button {
+  #appointment-creation input[type="button"] {
     margin-left: 10px;
     width: 92px;
     height: 54px;
